@@ -10,13 +10,20 @@ import { AuthService } from './_Services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_Services/alertify.service';
+import { MemberListComponent } from './member-list/member-list.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { AuthGuard } from './_Guards/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MemberListComponent,
+    ListsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,7 @@ import { AlertifyService } from './_Services/alertify.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,AlertifyService],
+  providers: [AuthService,AlertifyService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
