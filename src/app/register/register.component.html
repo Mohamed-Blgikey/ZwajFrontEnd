@@ -1,0 +1,25 @@
+<form #registerForm="ngForm" class="rtl" (ngSubmit)="register()">
+  <h4 style="font-weight:bold;font-family:'JF Flat';" class="text-center text-dark">شريكك في الحياة بإنتظارك</h4>
+  <hr>
+
+  <div class="form-group">
+    <input required name="name" [(ngModel)]="model.name" type="text" class="form-control" placeholder="اسم المشترك">
+  </div>
+
+  <div class="form-group">
+    <input required name="email" [(ngModel)]="model.email" type="text" class="form-control" placeholder="بريد المشترك">
+  </div>
+  <div class="form-group">
+    <input required name="password" [(ngModel)]="model.password" type="password" class="form-control"
+      placeholder="كلمة السر">
+  </div>
+
+  <div class="form-group text-center">
+    <button [disabled]="!registerForm.valid" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-dark btn-lg"
+      type="submit">إشتراك</button>
+    <button (click)="cancel()" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-dark btn-lg ml-2"
+      type="button">ليس
+      الأن</button>
+  </div>
+
+</form>

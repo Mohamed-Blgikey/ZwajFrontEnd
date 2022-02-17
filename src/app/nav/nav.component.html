@@ -1,0 +1,64 @@
+<nav class="rtl navbar navbar-expand-md navbar-dark bg-dark">
+  <a style="margin-top:-10px;color:pink;
+font-family:ToyorAljanah;font-size:2.25rem;font-weight:bolder" class="navbar-brand" href="#"><i class="fa fa-heart"
+      aria-hidden="true"></i>زواج<i class="fa fa-heart" aria-hidden="true"></i></a>
+
+  <ul *ngIf="loggedIn()" style="letter-spacing:1px;font-weight:bold;font-family:'JF Flat';font-size:1.2rem"
+    class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="#">الرئيسية </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">بحث</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">تواصل</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">دردشة</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" (click)="loggedOut()">خروج</a>
+    </li>
+  </ul>
+  <div class="dropdown">
+    <button class="btn">
+      <a *ngIf="loggedIn()" class="dropdown-toggle text-light nav-link">
+        مرحبا بك
+      </a>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"> <i class="fa fa-user-o"></i>
+        ملفى الشخصي</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item"> <i class="fa fa-sign-out"></i>
+        تسجيل الخروج</a>
+    </div>
+  </div>
+  <form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
+    <input required #email="ngModel" name="email" [(ngModel)]="model.email" class="form-control mr-sm-2" type="text"
+      placeholder="إسم المشترك">
+    <input required #password="ngModel" name="password" [(ngModel)]="model.password" class="form-control mr-sm-2"
+      type="password" placeholder="كلمة السر">
+    <button [disabled]="!loginForm.valid" style="font-weight:bold;font-family:'JF Flat';font-size:1.0rem"
+      class="btn btn-secondary my-2 my-sm-0" type="submit">تفضل
+      بالدخول</button>
+  </form>
+</nav>
+
+<!--
+<pre>
+  Form Valid : {{loginForm.valid}}
+  Form Touched : {{loginForm.touched}}
+  Form Dirty : {{loginForm.dirty}}
+  Form Values : {{loginForm.value | json}}
+  Username Valid : {{username.valid}}
+  Username Touched : {{username.touched}}
+  Username Dirty : {{username.dirty}}
+  Username Value : {{username.value}}
+  Password Valid : {{password.valid}}
+  Password Touched : {{password.touched}}
+  Password Dirty : {{password.dirty}}
+  Password Value : {{password.value}}
+</pre> -->
