@@ -26,6 +26,7 @@ font-family:ToyorAljanah;font-size:2.25rem;font-weight:bolder" class="navbar-bra
     <button class="btn">
       <a *ngIf="loggedIn()" class="dropdown-toggle text-light nav-link">
         مرحبا بك
+        {{user?.sub}}
       </a>
     </button>
     <div class="dropdown-menu">
