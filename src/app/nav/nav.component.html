@@ -1,4 +1,4 @@
-<nav class="rtl navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="rtl navbar navbar-expand-md navbar-dark bg-primary">
   <a [routerLink]="['/']" style="margin-top:-10px;color:pink;
 font-family:ToyorAljanah;font-size:2.25rem;font-weight:bolder" class="navbar-brand" href="#"><i class="fa fa-heart"
       aria-hidden="true"></i>زواج<i class="fa fa-heart" aria-hidden="true"></i></a>
@@ -22,21 +22,22 @@ font-family:ToyorAljanah;font-size:2.25rem;font-weight:bolder" class="navbar-bra
       <a class="nav-link" (click)="loggedOut()">خروج</a>
     </li>
   </ul>
-  <div class="dropdown">
-    <button class="btn">
-      <a *ngIf="loggedIn()" class="dropdown-toggle text-light nav-link">
-        مرحبا بك
-        {{user?.sub}}
-      </a>
+  <div *ngIf="loggedIn()" class="btn-group" dropdown>
+    <button id="button-basic" dropdownToggle type="button" class="btn dropdown-toggle  nav-link"
+      aria-controls="dropdown-basic">
+      مرحبا بك
+      {{user?.sub}}
     </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item"> <i class="fa fa-user-o"></i>
-        ملفى الشخصي</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item"> <i class="fa fa-sign-out"></i>
-        تسجيل الخروج</a>
-    </div>
+    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu mt-3" role="menu" aria-labelledby="button-basic">
+      <li role="menuitem"><a style="cursor: pointer;" class="dropdown-item"> <i class="fa fa-user"></i>
+          ملفى الشخصي</a></li>
+      <li class="divider dropdown-divider"></li>
+      <li role="menuitem"> <a style="cursor: pointer;" class="dropdown-item"> <i class="fa fa-sign-out"></i>
+          تسجيل الخروج</a>
+      </li>
+    </ul>
   </div>
+
   <form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
     <input required #email="ngModel" name="email" [(ngModel)]="model.email" class="form-control mr-sm-2" type="text"
       placeholder="إسم المشترك">
