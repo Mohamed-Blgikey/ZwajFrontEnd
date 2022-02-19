@@ -30,7 +30,20 @@ export class MemberEditComponent implements OnInit {
 
   updateUser(){
     // console.log(this.user);
-    this._UserService.editUser(this.id,this.user).subscribe(
+    let user = {
+        id:this.user?.id,
+        introduction: this.user?.introduction,
+        lookinFor: this.user?.lookingFor,
+        interests: this.user?.interests,
+        city: this.user?.city,
+        country: this.user?.country
+
+    }
+
+    // console.log(user);
+
+
+    this._UserService.editUser(user).subscribe(
       res=>{
         this.editForm.reset(this.user)
         this.alert.success("تم التعديل")
