@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/_models/user';
+import { AlertifyService } from 'src/app/_Services/alertify.service';
+import { AuthService } from 'src/app/_Services/auth.service';
+import { UserService } from 'src/app/_Services/user.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -7,9 +13,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberEditComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('editForm') editForm : NgForm|any;
+  user:User|any;
+  id:string ='';
+  constructor(private route:ActivatedRoute,private alert:AlertifyService,private _UserService:UserService,private auth:AuthService) {
+    this.id = this.auth.user['_value'].nameid;
+  }
 
   ngOnInit(): void {
+    this.route.data.subscribe(res=>{
+      this.user = res['user'];
+      // console.log(this.user);
+
+    })
+  }
+
+  updateUser(){
+    // console.log(this.user);
+    this._UserService.editUser(this.id,this.user).subscribe(
+      res=>{
+        this.editForm.reset(this.user)
+        this.alert.success("تم التعديل")
+      }
+,
+      err=>{
+        this.alert.error(err)
+      }
+    )
   }
 
 }

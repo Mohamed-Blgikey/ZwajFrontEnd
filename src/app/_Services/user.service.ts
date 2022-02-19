@@ -27,4 +27,12 @@ export class UserService {
 
     return this.http.get<User>(this.baseUrl+'GetUser/'+id,{headers:header});
   }
+
+  editUser(id:string,user:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.put<any>(this.baseUrl+'EditUser/'+id,user,{headers:header});
+  }
 }
