@@ -35,4 +35,20 @@ export class UserService {
 
     return this.http.put<any>(this.baseUrl+'EditUser',user,{headers:header});
   }
+
+  addPhoto(photo:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+'SavePhoto',photo,{headers:header});
+  }
+  deletePhoto(photo:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+'UnSavePhoto',photo,{headers:header});
+  }
 }
+

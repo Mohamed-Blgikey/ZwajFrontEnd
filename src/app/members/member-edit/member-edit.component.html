@@ -19,7 +19,7 @@
           </div>
           <div>
             <strong>مولود سنه </strong>
-            <p>{{user.birthOfDate}}</p>
+            <p>{{user.dateOfBirth|date}}</p>
           </div>
           <div>
             <strong>آخر ظهور </strong>
@@ -97,7 +97,7 @@
 
 
           <tab heading="صوري">
-            <p>هنا تعديل الصور</p>
+            <app-photo-editor [photos]="user.photos"></app-photo-editor>
             <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
           </tab>
 
