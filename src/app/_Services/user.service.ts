@@ -50,5 +50,13 @@ export class UserService {
 
     return this.http.post<any>(this.baseUrl+'UnSavePhoto',photo,{headers:header});
   }
+
+  UplaodPhoto(photo:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+'AddPhoto',photo,{headers:header});
+  }
 }
 

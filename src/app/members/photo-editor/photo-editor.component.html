@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-2" *ngFor="let photo of photos">
-    <img [src]="photo.url" class="img-thumbnail p-1">
+    <img [src]="imgPrefix+photo.url" class="img-thumbnail p-1">
     <div class="text-center">
       <button type="button" class="btn btn-sm btn-success">الرئيسيه</button>
       <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
@@ -11,8 +11,18 @@
 
 <div class="mt-5">
   <h5>Add Photo</h5>
-  <form>
-    <input (change)="uploadPhoto($event)" type="file">
+  <form [formGroup]="addPhoto" (ngSubmit)="Uplaod(addPhoto)">
+    <div class="form-group">
+      <div class="mb-3">
+        <input class="form-control" (change)="uploadPhoto($event)" type="file">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="mb-3">
+        <input class="form-control" formControlName="description" type="text" placeholder="اضف وصف للصوره">
+      </div>
+    </div>
+    <button class="btn btn-success">Add Photo</button>
   </form>
-  <button class="btn btn-success">Add Photo</button>
 </div>

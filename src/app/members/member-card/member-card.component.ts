@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-member-card',
@@ -8,6 +9,7 @@ import { User } from 'src/app/_models/user';
 })
 export class MemberCardComponent implements OnInit {
 
+  imgPrefix = environment.PhotoUrl;
   @Input() user:User|any;
   constructor() { }
 

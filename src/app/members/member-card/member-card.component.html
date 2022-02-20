@@ -1,6 +1,6 @@
 <div class="card my-4">
   <div style="text-align: center" class="wrapper">
-    <img class="card-img-top" src="{{user.photoUrl}}" alt="{{user.name}}">
+    <img class="card-img-top" src="{{imgPrefix+ user.photoUrl}}" alt="{{user.name}}">
     <ul dir="ltr" class="list-inline members-icons animate text-center">
       <li class="list-inline-item">
         <button class="btn btn-sm btn-outline-danger" [routerLink]="['/members',user.id]">

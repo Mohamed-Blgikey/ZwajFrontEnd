@@ -5,6 +5,7 @@ import { User } from 'src/app/_models/user';
 import { AlertifyService } from 'src/app/_Services/alertify.service';
 import { AuthService } from 'src/app/_Services/auth.service';
 import { UserService } from 'src/app/_Services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-member-edit',
@@ -16,6 +17,8 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm : NgForm|any;
   user:User|any;
   id:string ='';
+  imgPrefix = environment.PhotoUrl;
+
   constructor(private route:ActivatedRoute,private alert:AlertifyService,private _UserService:UserService,private auth:AuthService) {
     this.id = this.auth.user['_value'].nameid;
   }

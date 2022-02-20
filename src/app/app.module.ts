@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -49,7 +49,8 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    ReactiveFormsModule
 
   ],
   providers: [AuthService,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,PreventUnsaveChangesGuard],
