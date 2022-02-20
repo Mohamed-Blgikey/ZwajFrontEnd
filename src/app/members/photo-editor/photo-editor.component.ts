@@ -19,6 +19,7 @@ export class PhotoEditorComponent implements OnInit ,OnDestroy{
   fileName:string = '';
   model:any = {} ;
   imgPrefix = environment.PhotoUrl;
+  currentMain:string='';
   addPhoto:FormGroup  = new FormGroup({
     url: new FormControl("",[Validators.required]),
     description: new FormControl("",[Validators.required]),
@@ -57,7 +58,35 @@ export class PhotoEditorComponent implements OnInit ,OnDestroy{
     errr=>{
       this.alert.error("حدث خطا")
     })
+  }
 
+  SetMainPhoto(photo:any){
+    let nPhoto = {
+      userId : this.auth.user['_value'].nameid,
+      photoId : photo.id
+    }
+    // console.log(nPhoto);
+
+    this._UserService.SetMainPhoto(nPhoto).subscribe(res=>{
+      this.alert.message(res.message)
+    })
+  }
+  DeletePhoto(photo:any){
+    let nPhoto = {
+      userId : this.auth.user['_value'].nameid,
+      photoId : photo.id
+    }
+
+    let dPhoto = {
+      name : photo.url
+    }
+    this._UserService.deletePhoto(dPhoto).subscribe(res=>{
+      this.alert.success(res.message);
+    })
+    // console.log(nPhoto,photo.url);
+    this._UserService.DeletePhoto(nPhoto).subscribe(res=>{
+      this.alert.message(res.message);
+    })
   }
 
   private stopAddunusablePhoto(){

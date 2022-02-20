@@ -58,5 +58,21 @@ export class UserService {
 
     return this.http.post<any>(this.baseUrl+'AddPhoto',photo,{headers:header});
   }
+
+  DeletePhoto(photo:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+'DeletePhoto',photo,{headers:header});
+  }
+
+  SetMainPhoto(photo:any):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+'SetMain',photo,{headers:header});
+  }
 }
 
