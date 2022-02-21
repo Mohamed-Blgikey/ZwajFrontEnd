@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img [src]="imgPrefix+ user.photoUrl" [alt]="user.name">
+        <img *ngIf="user.photoUrl!=null" [src]="imgPrefix+ user.photoUrl" [alt]="user.name">
+        <img *ngIf="user.photoUrl==null" src=" ../../../assets/149071.png" alt="" srcset="">
         <div class="card-body">
           <div>
             <strong>يقيم في : </strong>
@@ -46,7 +47,6 @@
           </tab>
 
           <tab heading="البوم الصور">
-            <h4> الصور قادمه</h4>
             <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
           </tab>
 
