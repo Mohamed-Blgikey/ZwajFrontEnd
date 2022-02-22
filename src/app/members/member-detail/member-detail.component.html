@@ -7,7 +7,7 @@
         <div class="card-body">
           <div>
             <strong>يقيم في : </strong>
-            <p>{{user.country}},{{user.city}}</p>
+            <p>{{user.country}} - {{user.city}}</p>
           </div>
 
           <div>
@@ -17,12 +17,12 @@
 
           <div>
             <strong> اخر ظهور : </strong>
-            <p>{{user.lastActive|date}}</p>
+            <p>{{user.lastActive|date:'short'}}</p>
           </div>
 
           <div>
             <strong> مشترك منذ : </strong>
-            <p>{{user.created|date}}</p>
+            <p>{{created}}</p>
           </div>
         </div>
 

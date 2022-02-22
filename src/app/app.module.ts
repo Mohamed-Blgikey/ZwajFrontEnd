@@ -39,7 +39,9 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     MemberCardComponent,
     MemberDetailComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 
   ],
   providers: [AuthService,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,PreventUnsaveChangesGuard],

@@ -20,7 +20,14 @@ export class MemberDetailComponent implements OnInit {
   id:string ='';
   galleryOptions:NgxGalleryOptions[]|any;
   galleryImages:NgxGalleryImage[]|any;
-  imgPrefix = environment.PhotoUrl
+  imgPrefix = environment.PhotoUrl;
+  created:string='';
+  option:any={
+    weekday:'long',
+    year:'numeric',
+    month:'long',
+    day:'numeric',
+  };
   constructor(private _UserService:UserService,private alert:AlertifyService,private route:ActivatedRoute) {
 
   }
@@ -59,6 +66,7 @@ export class MemberDetailComponent implements OnInit {
     ];
     this.galleryImages = this.getImages(this.user);
     // console.log(this.galleryImages);
+    this.created = new Date(this.user.created).toLocaleString('ar-EG',this.option).replace('،','')
 
   }
 

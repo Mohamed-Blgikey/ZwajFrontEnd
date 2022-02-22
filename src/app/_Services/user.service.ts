@@ -74,5 +74,13 @@ export class UserService {
 
     return this.http.post<any>(this.baseUrl+'SetMain',photo,{headers:header});
   }
+
+  Like(likerId:string,likeeId:string):Observable<any>{
+    let token:any = localStorage.getItem('token');
+    let header = new HttpHeaders()
+      .set("Authorization","Bearer " + token)
+
+    return this.http.post<any>(this.baseUrl+likerId+'/like/'+likeeId,{},{headers:header});
+  }
 }
 
