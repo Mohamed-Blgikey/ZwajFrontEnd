@@ -10,6 +10,7 @@ import { AuthGuard } from './_Guards/auth.guard';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MessageResolver } from './_resolvers/message.resolver';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -28,7 +29,10 @@ const routes: Routes = [
     }},
 
     {path:'lists',component:ListsComponent},
-    {path:"messages",component:MessagesComponent},
+
+    {path:"messages",component:MessagesComponent,resolve:{
+      messages : MessageResolver
+    }},
   ]},
   {path:'**',redirectTo:'',pathMatch:'full'}
 ];

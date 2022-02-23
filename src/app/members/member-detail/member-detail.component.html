@@ -29,14 +29,14 @@
         <div class="Card-footer">
           <div class="btn-group d-flex">
             <button class="btn btn-primary w-100">اعجاب</button>
-            <button class="btn btn-success w-100">مراسله</button>
+            <button class="btn btn-success w-100" (click)="selectTab(3)">مراسله</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="member-tabset">
+        <tabset #memberTabs class="member-tabset">
           <tab heading="انا {{user.name}}">
             <h4>اعرفك بنفسي</h4>
             <p>{{user.introduction}}</p>
@@ -52,7 +52,7 @@
 
           <tab heading="الرسايل ">
             <h4> الرسايل </h4>
-            <p>الرسايل قادمه</p>
+            <app-memmber-message [recipientId]="user.id"></app-memmber-message>
           </tab>
         </tabset>
       </div>

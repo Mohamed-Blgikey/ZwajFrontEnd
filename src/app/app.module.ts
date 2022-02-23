@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';import { BsDropdownModul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -26,6 +27,8 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsaveChangesGuard } from './_Guards/prevent-unsave-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { MessageResolver } from './_resolvers/message.resolver';
+import { MemmberMessageComponent } from './members/memmber-message/memmber-message.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemmberMessageComponent,
 
 
   ],
@@ -53,10 +57,11 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     TabsModule.forRoot(),
     NgxGalleryModule,
     ReactiveFormsModule,
+    PaginationModule.forRoot()
 
 
   ],
-  providers: [AuthService,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,PreventUnsaveChangesGuard],
+  providers: [AuthService,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,PreventUnsaveChangesGuard,MessageResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

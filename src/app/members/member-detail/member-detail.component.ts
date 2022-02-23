@@ -1,52 +1,54 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
-import {NgxGalleryImage} from '@kolkov/ngx-gallery';
-import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { User } from 'src/app/_models/user';
 import { AlertifyService } from 'src/app/_Services/alertify.service';
 import { UserService } from 'src/app/_Services/user.service';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.scss']
+  styleUrls: ['./member-detail.component.scss'],
 })
 export class MemberDetailComponent implements OnInit {
-
-  user:User|any;
-  id:string ='';
-  galleryOptions:NgxGalleryOptions[]|any;
-  galleryImages:NgxGalleryImage[]|any;
+  @ViewChild('memberTabs') memberTabs: TabsetComponent | undefined | any;
+  user: User | any;
+  id: string = '';
+  galleryOptions: NgxGalleryOptions[] | any;
+  galleryImages: NgxGalleryImage[] | any;
   imgPrefix = environment.PhotoUrl;
-  created:string='';
-  option:any={
-    weekday:'long',
-    year:'numeric',
-    month:'long',
-    day:'numeric',
+  created: string = '';
+  option: any = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
-  constructor(private _UserService:UserService,private alert:AlertifyService,private route:ActivatedRoute) {
-
-  }
+  constructor(
+    private _UserService: UserService,
+    private alert: AlertifyService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.data.subscribe((res) => {
+      this.user = res['user'];
+      // console.log(this.user);
+    });
 
-    this.route.data.subscribe(
-      res=>{
-        this.user = res['user'];
-        // console.log(this.user);
-      }
-    )
-
+    this.route.params.subscribe((res: any) => {
+      console.log(res);
+    });
     this.galleryOptions = [
       {
         width: '600px',
         height: '400px',
         thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
+        imageAnimation: NgxGalleryAnimation.Slide,
       },
       // max-width 800
       {
@@ -56,33 +58,34 @@ export class MemberDetailComponent implements OnInit {
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
-        thumbnailMargin: 20
+        thumbnailMargin: 20,
       },
       // max-width 400
       {
         breakpoint: 400,
-        preview: false
-      }
+        preview: false,
+      },
     ];
     this.galleryImages = this.getImages(this.user);
     // console.log(this.galleryImages);
-    this.created = new Date(this.user.created).toLocaleString('ar-EG',this.option).replace('،','')
-
+    this.created = new Date(this.user.created)
+      .toLocaleString('ar-EG', this.option)
+      .replace('،', '');
   }
 
+  selectTab(tabId: number) {
+    this.memberTabs.tabs[tabId].active = true;
+  }
 
-
-  private getImages(user:User){
+  private getImages(user: User) {
     const imageUrl = [];
     for (let i = 0; i < this.user?.photos?.length; i++) {
       imageUrl.push({
-        small:this.imgPrefix+this.user.photos[i].url,
-        medium :this.imgPrefix+ this.user.photos[i].url,
-        big :this.imgPrefix+ this.user.photos[i].url
-      })
+        small: this.imgPrefix + this.user.photos[i].url,
+        medium: this.imgPrefix + this.user.photos[i].url,
+        big: this.imgPrefix + this.user.photos[i].url,
+      });
     }
     return imageUrl;
   }
-
-
 }
