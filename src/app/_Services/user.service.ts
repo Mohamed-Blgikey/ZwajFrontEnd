@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaginationResult } from '../_models/pagination';
 import { User } from '../_models/user';
@@ -145,5 +145,19 @@ export class UserService {
       message,
       { headers: header }
     );
+  }
+
+  GetReportForUser(id: string): any {
+    return this.http
+      .get(this.baseUrl + 'api/Users/UserReport/' + id, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/pdf' }),
+        responseType: 'blob',
+      })
+      .pipe(
+        tap(
+          () => console.log('تم إستلام الملف بنجاح'),
+          (error) => console.log(error)
+        )
+      );
   }
 }

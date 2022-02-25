@@ -13,7 +13,7 @@ import * as signalR from '@aspnet/signalr';
 })
 export class MemmberMessageComponent implements OnInit {
   @Input() recipientId: string = '';
-  messages: Message[] = [];
+  messages?: Message[];
   newMessage: any = {};
   imgPrefix = environment.PhotoUrl;
   hubConnection: any;

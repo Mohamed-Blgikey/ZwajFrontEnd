@@ -29,6 +29,8 @@ import { PreventUnsaveChangesGuard } from './_Guards/prevent-unsave-changes.guar
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { MessageResolver } from './_resolvers/message.resolver';
 import { MemmberMessageComponent } from './members/memmber-message/memmber-message.component';
+import { LangDirective } from './_directives/lang.directive';
+import { UserMangmentComponent } from './Admin/user-mangment/user-mangment.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { MemmberMessageComponent } from './members/memmber-message/memmber-messa
     MemberEditComponent,
     PhotoEditorComponent,
     MemmberMessageComponent,
+    LangDirective,
+    UserMangmentComponent,
 
 
   ],
